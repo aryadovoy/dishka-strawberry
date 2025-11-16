@@ -1,6 +1,6 @@
-# Strawberry
+# dishka-strawberry
 
-Though it is not required, you can use *dishka-strawberry* integration. It features:
+*dishka-strawberry* will help you use [Dishka](https://github.com/reagento/dishka) with [Strawberry](https://github.com/strawberry-graphql/strawberry). It features:
 
 * automatic injection of dependencies into GraphQL resolver functions
 * integration with FastAPI through `strawberry.fastapi.GraphQLRouter`

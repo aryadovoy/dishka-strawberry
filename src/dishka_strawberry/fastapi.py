@@ -47,7 +47,7 @@ def _find_context_param(func: Callable[P, T]) -> str | None:
     hints = get_type_hints(func, include_extras=True)
     func_signature = signature(func)
 
-    request_hint = None
+    info_hint = None
 
     for name, hint in hints.items():
         param = func_signature.parameters.get(name)
@@ -56,9 +56,9 @@ def _find_context_param(func: Callable[P, T]) -> str | None:
         if default_parse_dependency(param, hint) is not None:
             continue
         if hint is Info:
-            request_hint = name
+            info_hint = name
 
-    return request_hint
+    return info_hint
 
 
 def _get_container_with_source(
