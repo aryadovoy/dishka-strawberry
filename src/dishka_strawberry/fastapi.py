@@ -20,6 +20,7 @@ from dishka import (
     FromDishka,
 )
 from dishka.integrations.base import default_parse_dependency, wrap_injection
+from strawberry.fastapi import BaseContext
 from strawberry.types import Info
 
 T = TypeVar("T")
@@ -72,11 +73,13 @@ def _get_container_with_source(
             container=kwargs[param_name].state.dishka_container,
         )
 
+    context = kwargs[DISHKA_INFO_PARAM.name].context
+
     return ContainerResult(
         container=(
-            kwargs[DISHKA_INFO_PARAM.name]
-            .context["request"]
-            .state.dishka_container
+            context.request.state.dishka_container
+            if isinstance(context, BaseContext) and context.request
+            else context["request"].state.dishka_container  # pyright: ignore[reportIndexIssue]
         ),
         source=ContainerSource.REQUEST,
     )
