@@ -1,6 +1,6 @@
 [project]
 name = "dishka-strawberry"
-version = "0.1.0"
+version = "0.1.1"
 description = "Dishka integration for Strawberry"
 readme = "README.md"
 authors = [
